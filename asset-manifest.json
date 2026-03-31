@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/tayloricaz/static/css/main.f625b5ac.css",
+    "main.js": "/tayloricaz/static/js/main.3692e777.js",
+    "static/media/lover.png": "/tayloricaz/static/media/lover.e54032626421f3fe37fa.png",
+    "static/media/taylorHoldingCats.png": "/tayloricaz/static/media/taylorHoldingCats.5ec58c593c599889a206.png",
+    "static/media/1989tv.png": "/tayloricaz/static/media/1989tv.c45b1cc4c2d04d1d902d.png",
+    "static/media/midnights.png": "/tayloricaz/static/media/midnights.74604c8bb00022eed7f3.png",
+    "static/media/tloas.webp": "/tayloricaz/static/media/tloas.dd188ce9d38b94955aef.webp",
+    "static/media/taylorEras.avif": "/tayloricaz/static/media/taylorEras.b4cbaf54297fb5b8d1ae.avif",
+    "static/media/evermore.png": "/tayloricaz/static/media/evermore.a0abdc6308088aa04239.png",
+    "static/media/speakNow.webp": "/tayloricaz/static/media/speakNow.01349e7538d0806c6538.webp",
+    "static/media/loverHouse.jpg": "/tayloricaz/static/media/loverHouse.268590eaf96f50f7d0da.jpg",
+    "static/media/red.webp": "/tayloricaz/static/media/red.1bc416f00a983aa9abce.webp",
+    "static/media/folklore.png": "/tayloricaz/static/media/folklore.d442f2212781a23b591f.png",
+    "static/media/reputation.png": "/tayloricaz/static/media/reputation.2324db6641705824e9c6.png",
+    "static/media/ttpd.png": "/tayloricaz/static/media/ttpd.004fdf97a60709601af1.png",
+    "static/media/fearless.png": "/tayloricaz/static/media/fearless.6bcbc3ef0c7d81db8333.png",
+    "index.html": "/tayloricaz/index.html",
+    "main.f625b5ac.css.map": "/tayloricaz/static/css/main.f625b5ac.css.map",
+    "main.3692e777.js.map": "/tayloricaz/static/js/main.3692e777.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f625b5ac.css",
+    "static/js/main.3692e777.js"
+  ]
+}
