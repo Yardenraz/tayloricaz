@@ -1,0 +1,20 @@
+New-Item -Path "HKLM:\System\CurrentControlSet\Policies\Microsoft\FVE" -Force
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Force
+Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Policies\Microsoft\FVE" -Name "RDVDenyWriteAccess" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Name "RDVDenyCrossOrg" -Value 0 -Type DWord
+
+
+
+
+
+
+$regPath1 = "HKLM:\System\CurrentControlSet\Policies\Microsoft\FVE"
+$regPath2 = "HKLM:\SOFTWARE\Policies\Microsoft\FVE"
+
+$val1 = (Get-ItemProperty -Path $regPath1 -Name "RDVDenyWriteAccess" -ErrorAction SilentlyContinue).RDVDenyWriteAccess
+if ($val1 -eq 1) { Write-Host "[PASS] RDVDenyWriteAccess = $val1" -ForegroundColor Green }
+else { Write-Host "[FAIL] RDVDenyWriteAccess = $val1 (expected: 1)" -ForegroundColor Red }
+
+$val2 = (Get-ItemProperty -Path $regPath2 -Name "RDVDenyCrossOrg" -ErrorAction SilentlyContinue).RDVDenyCrossOrg
+if ($val2 -eq 0) { Write-Host "[PASS] RDVDenyCrossOrg = $val2" -ForegroundColor Green }
+else { Write-Host "[FAIL] RDVDenyCrossOrg = $val2 (expected: 0)" -ForegroundColor Red }

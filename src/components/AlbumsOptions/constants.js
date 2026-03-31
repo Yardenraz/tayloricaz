@@ -9,34 +9,35 @@ import fearless from "../../assets/images/fearless.png";
 import debut from "../../assets/images/debut.png";
 import folklore from "../../assets/images/folklore.png";
 import ttpd from "../../assets/images/ttpd.png";
+import tloas from "../../assets/images/tloas.webp";
 import { alpha } from "@mui/material";
 
 export const albumsArray = [
   {
     img: debut,
-    albumNum: 2,
+    albumNum: 1,
     color: alpha("#B6D06D", 0.75),
     textColor: "black",
   },
   {
     img: fearless,
-    albumNum: 3,
+    albumNum: 2,
     color: alpha("#E1CFB6", 0.85),
     textColor: "#000000",
   },
   {
     img: speakNow,
-    albumNum: 4,
+    albumNum: 3,
     color: alpha("#7C6089", 0.75),
     textColor: "#000000",
   },
   {
     img: red,
-    albumNum: 5,
+    albumNum: 4,
     color: alpha("#972B2D", 0.75),
     textColor: "#000000",
   },
-  { img: eightyNine, albumNum: 1, color: "#d6e9ff", textColor: "#000000" },
+  { img: eightyNine, albumNum: 5, color: "#d6e9ff", textColor: "#000000" },
   { img: reputation, albumNum: 6, color: "#727272", textColor: "#000000" },
   { img: lover, albumNum: 7, color: "#eaadd6", textColor: "#000000" },
   { img: folklore, albumNum: 8, color: "#bababa", textColor: "#000000" },
@@ -58,10 +59,10 @@ export const albumsArray = [
     color: alpha("#edebe7", 0.8),
     textColor: "#000000",
   },
-  // {
-  //   img: ttpd-v2,
-  //   albumNum: 11,
-  //   color: alpha("#edebe7", 0.8),
-  //   textColor: "#000000",
-  // }
+  {
+    img: tloas,
+    albumNum: 12,
+    color: alpha("#86c3a0 ", 0.8),
+    textColor: "#000000",
+  }
 ];

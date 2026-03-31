@@ -64,7 +64,8 @@ export const AlbumAccordion = ({
       </AccordionSummary>
       <AccordionDetails
         sx={{
-          overflowY: isHovering || isMobile ? "scroll" : "hidden",
+          overflowY: isMobile ? "visible" : "auto",
+
           height: isMobile ? "fit-content" : "18rem",
           flexShrink: 0,
           scrollbarGutter: "stable both-edges",
@@ -72,14 +73,10 @@ export const AlbumAccordion = ({
             width: "5px",
           },
           "&::-webkit-scrollbar-thumb": {
-            background: "white",
+            background: color,
             borderRadius: "10px",
           },
         }}
-        {...(isMobile && {
-          onMouseEnter: () => setIsHovering(true),
-          onMouseLeave: () => setIsHovering(false)
-        })}
       >
         <SongList album_id={albumNum} numOfSongs={numOfSongs} color={color} />
       </AccordionDetails>

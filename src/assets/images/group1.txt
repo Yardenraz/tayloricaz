@@ -1,0 +1,18 @@
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions" -Force
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions" -Name "DenyDeviceClasses" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions" -Name "DenyDeviceClassesRetroactive" -Value 1 -Type DWord
+
+
+
+
+
+
+$regPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions"
+
+$val1 = (Get-ItemProperty -Path $regPath -Name "DenyDeviceClasses" -ErrorAction SilentlyContinue).DenyDeviceClasses
+if ($val1 -eq 1) { Write-Host "[PASS] DenyDeviceClasses = $val1" -ForegroundColor Green }
+else { Write-Host "[FAIL] DenyDeviceClasses = $val1 (expected: 1)" -ForegroundColor Red }
+
+$val2 = (Get-ItemProperty -Path $regPath -Name "DenyDeviceClassesRetroactive" -ErrorAction SilentlyContinue).DenyDeviceClassesRetroactive
+if ($val2 -eq 1) { Write-Host "[PASS] DenyDeviceClassesRetroactive = $val2" -ForegroundColor Green }
+else { Write-Host "[FAIL] DenyDeviceClassesRetroactive = $val2 (expected: 1)" -ForegroundColor Red }

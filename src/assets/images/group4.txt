@@ -1,0 +1,11 @@
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Force
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Name "UseAdvancedStartup" -Value 1 -Type DWord
+
+
+
+
+$regPath = "HKLM:\SOFTWARE\Policies\Microsoft\FVE"
+
+$val1 = (Get-ItemProperty -Path $regPath -Name "UseAdvancedStartup" -ErrorAction SilentlyContinue).UseAdvancedStartup
+if ($val1 -eq 1) { Write-Host "[PASS] UseAdvancedStartup = $val1" -ForegroundColor Green }
+else { Write-Host "[FAIL] UseAdvancedStartup = $val1 (expected: 1)" -ForegroundColor Red }

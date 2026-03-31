@@ -1,0 +1,46 @@
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Force
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Name "OSRecovery" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Name "OSRecoveryKey" -Value 0 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Name "OSRecoveryPassword" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Name "OSManageDRA" -Value 0 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Name "OSActiveDirectoryInfoToStore" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Name "OSRequireActiveDirectoryBackup" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Name "OSHideRecoveryPage" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\FVE" -Name "OSActiveDirectoryBackup" -Value 1 -Type DWord
+
+
+
+
+$regPath = "HKLM:\SOFTWARE\Policies\Microsoft\FVE"
+
+$val1 = (Get-ItemProperty -Path $regPath -Name "OSRecovery" -ErrorAction SilentlyContinue).OSRecovery
+if ($val1 -eq 1) { Write-Host "[PASS] OSRecovery = $val1" -ForegroundColor Green }
+else { Write-Host "[FAIL] OSRecovery = $val1 (expected: 1)" -ForegroundColor Red }
+
+$val2 = (Get-ItemProperty -Path $regPath -Name "OSRecoveryKey" -ErrorAction SilentlyContinue).OSRecoveryKey
+if ($val2 -eq 0) { Write-Host "[PASS] OSRecoveryKey = $val2" -ForegroundColor Green }
+else { Write-Host "[FAIL] OSRecoveryKey = $val2 (expected: 0)" -ForegroundColor Red }
+
+$val3 = (Get-ItemProperty -Path $regPath -Name "OSRecoveryPassword" -ErrorAction SilentlyContinue).OSRecoveryPassword
+if ($val3 -eq 1) { Write-Host "[PASS] OSRecoveryPassword = $val3" -ForegroundColor Green }
+else { Write-Host "[FAIL] OSRecoveryPassword = $val3 (expected: 1)" -ForegroundColor Red }
+
+$val4 = (Get-ItemProperty -Path $regPath -Name "OSManageDRA" -ErrorAction SilentlyContinue).OSManageDRA
+if ($val4 -eq 0) { Write-Host "[PASS] OSManageDRA = $val4" -ForegroundColor Green }
+else { Write-Host "[FAIL] OSManageDRA = $val4 (expected: 0)" -ForegroundColor Red }
+
+$val5 = (Get-ItemProperty -Path $regPath -Name "OSActiveDirectoryInfoToStore" -ErrorAction SilentlyContinue).OSActiveDirectoryInfoToStore
+if ($val5 -eq 1) { Write-Host "[PASS] OSActiveDirectoryInfoToStore = $val5" -ForegroundColor Green }
+else { Write-Host "[FAIL] OSActiveDirectoryInfoToStore = $val5 (expected: 1)" -ForegroundColor Red }
+
+$val6 = (Get-ItemProperty -Path $regPath -Name "OSRequireActiveDirectoryBackup" -ErrorAction SilentlyContinue).OSRequireActiveDirectoryBackup
+if ($val6 -eq 1) { Write-Host "[PASS] OSRequireActiveDirectoryBackup = $val6" -ForegroundColor Green }
+else { Write-Host "[FAIL] OSRequireActiveDirectoryBackup = $val6 (expected: 1)" -ForegroundColor Red }
+
+$val7 = (Get-ItemProperty -Path $regPath -Name "OSHideRecoveryPage" -ErrorAction SilentlyContinue).OSHideRecoveryPage
+if ($val7 -eq 1) { Write-Host "[PASS] OSHideRecoveryPage = $val7" -ForegroundColor Green }
+else { Write-Host "[FAIL] OSHideRecoveryPage = $val7 (expected: 1)" -ForegroundColor Red }
+
+$val8 = (Get-ItemProperty -Path $regPath -Name "OSActiveDirectoryBackup" -ErrorAction SilentlyContinue).OSActiveDirectoryBackup
+if ($val8 -eq 1) { Write-Host "[PASS] OSActiveDirectoryBackup = $val8" -ForegroundColor Green }
+else { Write-Host "[FAIL] OSActiveDirectoryBackup = $val8 (expected: 1)" -ForegroundColor Red }
