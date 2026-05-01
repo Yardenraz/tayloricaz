@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import classes from "./SongQuiz.module.css";
 import {
   formatLyricsForDisplay,
+  formatWord,
   getRandomInt,
   isWordGuessed,
   mapIndexed,
@@ -20,10 +21,10 @@ import allLyrics from "../../lyrics.json";
 export const SongQuiz = () => {
   const { state } = useLocation();
   const [wordGuess, setWordGuess] = useState("");
+  const initialSong = find(pipe(prop("song_id"), equals(state.songNum)), allLyrics);
+  const [songTitle, setSongTitle] = useState(initialSong?.song_title);
   const [lyricsProps, setLyricsProps] = useState(
-    formatLyricsForDisplay(
-      find(pipe(prop("song_id"), equals(state.songNum)), allLyrics)?.lyrics
-    )
+    formatLyricsForDisplay(initialSong?.lyrics)
   );
   const [gaveUp, setGaveUp] = useState(false);
   const [showBlanks, seShowBlanks] = useState(false);
@@ -34,10 +35,37 @@ export const SongQuiz = () => {
     overSome(prop("isVisible"), !prop("losingWord")),
     lyricsProps
   )?.length;
+
+  const titleWords = useMemo(
+    () =>
+      (songTitle ?? "")
+        .replace(/\(.*?\)/g, "")
+        .split(/\s+/)
+        .map(formatWord)
+        .filter(Boolean),
+    [songTitle]
+  );
+
+  const titleGuessed = useMemo(
+    () =>
+      titleWords.length > 0 &&
+      titleWords.every((tw) =>
+        lyricsProps.some(
+          (lp) => lp.isVisible && !lp.losingWord && formatWord(lp.word) === tw
+        )
+      ),
+    [titleWords, lyricsProps]
+  );
   const updateWordDisplay = (event) => setWordGuess(event.target.value);
 
+  const revealWord = (index) => {
+    setLyricsProps((prev) =>
+      prev.map((wp, i) => i === index ? { ...wp, isVisible: true, losingWord: true } : wp)
+    );
+  };
+
   const wordsTable = useMemo(() =>
-      mapIndexed((lyricProps, index) => <WordCell key={index} {...lyricProps} />, lyricsProps),
+      mapIndexed((lyricProps, index) => <WordCell key={index} {...lyricProps} onReveal={() => revealWord(index)} />, lyricsProps),
     [lyricsProps]
   );
 
@@ -48,7 +76,7 @@ export const SongQuiz = () => {
       map(({ word, isVisible, losingWord }) => {
         if (!isVisible && isWordGuessed(wordGuess, word)) {
           setWordGuess("");
-          return { word, isVisible: true, losingWord };
+          return { word, isVisible: true, losingWord: false };
         } else {
           return { word, isVisible, losingWord };
         }
@@ -57,8 +85,15 @@ export const SongQuiz = () => {
   }, [wordGuess]);
 
   const regenerateSong = () => {
+    const newSongNum = getRandomInt(state.numOfSongs);
+    const newSong = find(pipe(prop("song_id"), equals(newSongNum)), allLyrics);
+    setLyricsProps(formatLyricsForDisplay(newSong?.lyrics));
+    setSongTitle(newSong?.song_title);
+    setWordGuess("");
+    setGaveUp(false);
+    seShowBlanks(false);
     setRestartTimer((prevValue) => !prevValue);
-    navigate(`/songquiz`, {state: {songNum: getRandomInt(state.numOfSongs), numOfSongs: state.numOfSongs}});
+    navigate(`/songquiz`, {state: {songNum: newSongNum, numOfSongs: state.numOfSongs}, replace: true});
   };
 
   const lose = () => {
@@ -101,6 +136,11 @@ export const SongQuiz = () => {
       {lyricsProps?.length ? (
         lyricsGuessed !== lyricsProps?.length || gaveUp ? (
           <>
+            {titleGuessed && (
+              <div className="font-playfair text-3xl font-bold tracking-wide mt-2 mb-1 animate-appear">
+                {songTitle}
+              </div>
+            )}
             <div className="font-playfair">
               you guessed {lyricsGuessed} lyrics out of {lyricsProps?.length}
             </div>

@@ -61,7 +61,7 @@ p {
 }
 
 .animate-appear {
-  animation: show 1s forwards;
+  animation: show 3s forwards;
 }
 
 
