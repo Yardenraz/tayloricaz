@@ -19,14 +19,14 @@ export const WordCell = ({ word, isVisible = false, losingWord = false, onReveal
     : word;
 
   return (
-    <div className={`${!losingWord ? isVisible && "animate-appear" : "animate-appear-lose"} border color-gree relative group flex items-center`}>
+    <div className={`${!losingWord ? isVisible && "animate-appear" : "animate-appear-lose"} border color-gree relative group`}>
       <p className={`${isVisible || hintLevel > 0 ? "visible" : "invisible"}`}>
         {displayText}
       </p>
       {showHint && (
         <span
           onClick={handleHintClick}
-          className="ml-1 opacity-0 group-hover:opacity-100 cursor-pointer text-sm"
+          className="absolute right-1 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 cursor-pointer text-sm"
           title={hintLevel + 1 >= word.length ? "Reveal word" : "Reveal next letter"}
         >
           💡
